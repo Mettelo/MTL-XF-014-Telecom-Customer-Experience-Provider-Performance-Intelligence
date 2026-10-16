@@ -1,33 +1,33 @@
 # Data Guidance
 
-## Approved Core Dataset
+## Approved Core Source
 
-Use Ofcom's **Telecoms and Pay-TV complaints underlying quarterly CSV data**.
+Use Ofcom's **Telecoms and Pay-TV complaints quarterly underlying CSV data**.
 
 Official source:
 https://www.ofcom.org.uk/telecoms-and-pay-tv-complaints
 
-## Core Time Scope
+## Required Time Scope
 
-This project should **not** be based on one quarter only.
+This project should **not** rely on one quarter only.
 
 Recommended core history:
 - minimum: **4 consecutive quarters**;
 - preferred: **8 quarters** where provider/service definitions remain comparable.
 
-Use **Q1 2026** as the latest frozen reference quarter for the cohort, then add the preceding quarters needed to create the history.
+Use **Q1 2026** as the latest frozen reference quarter for the cohort, then add the preceding quarters needed to build the history.
 
 ## Why Multiple Quarters Are Required
 
-The business problem requires distinguishing:
+The project must distinguish:
 - persistent deterioration;
 - persistent improvement;
 - temporary spikes;
 - service-specific issues.
 
-A single-quarter file cannot support those conclusions.
+A single quarter cannot support those conclusions.
 
-## Raw Folder Strategy
+## What to Put in `data/raw/`
 
 Store one untouched CSV per quarter:
 
@@ -39,29 +39,35 @@ data/raw/
 └── ofcom-telecom-complaints-2026-q1.csv
 ```
 
-Use the exact quarters your team selects and document them in `SOURCE_REGISTER.md`.
-
-## Provider/Service Continuity
-
-Before combining quarters:
-- standardise provider names cautiously;
-- preserve service type;
-- record provider entry/exit;
-- record methodology changes;
-- avoid comparing unlike service categories.
+Use the exact quarters your team selects and record all filenames and URLs in `SOURCE_REGISTER.md`.
 
 ## Recommended Analytical Grain
 
 **One row per provider × service × quarter**.
 
-Do not collapse broadband, mobile and pay-TV into one overall provider score unless a documented method has been explicitly approved.
+Preserve:
+- provider;
+- service type;
+- quarter;
+- published complaint rate;
+- published denominator/unit;
+- source version.
 
-## Small Data Guidance
+## Continuity Rules
 
-These quarterly CSVs are small enough to commit directly to GitHub.
+Before combining quarters:
+- standardise provider names cautiously;
+- record provider entry/exit;
+- record service/category changes;
+- record methodology changes;
+- do not combine broadband, mobile and pay-TV into one score without an approved method.
 
-The challenge is not storage size; it is building a clean longitudinal history and preserving comparability.
+## File Size Guidance
+
+The quarterly CSVs are small enough to keep directly in GitHub.
+
+The key challenge is longitudinal comparability, not storage size.
 
 ## Optional Extension
 
-Teams may extend to older quarters after the core 4–8 quarter history is working, but they should not add years of history if provider/methodology changes make the comparison less reliable.
+After the core 4–8 quarter history works, teams may add older quarters if comparability remains defensible.
